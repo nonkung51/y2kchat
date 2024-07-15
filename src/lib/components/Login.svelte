@@ -37,8 +37,8 @@
   </div>
   <div class="window-body">
     <div class="field-row">
-      <label for="username">Username:</label>
-      <input type="email" bind:value={email} placeholder="Email" />
+      <label for="email">Email:</label>
+      <input type="text" bind:value={email} placeholder="Email" />
     </div>
     <div class="field-row">
       <label for="password">Password:</label>
