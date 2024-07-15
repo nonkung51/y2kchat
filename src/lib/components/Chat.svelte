@@ -45,31 +45,56 @@
   }
 </script>
 
-<div>
-  <div class="messages">
+<div class="chat-window">
+  <div class="chat-header"></div>
+  <div class="chat-messages">
     {#each messages as message}
-      <div class={message.senderId === auth.currentUser.uid ? 'sent' : 'received'}>
-        {message.text}
+      <div class="message">
+        <span class="message-sender {message.senderId === auth.currentUser.uid ? 'matheu' : 'kelli'}">{message.senderId === auth.currentUser.uid ? 'matheu' : 'kelli'}:</span> {message.text}
       </div>
     {/each}
   </div>
-  <form on:submit|preventDefault={sendMessage}>
-    <input bind:value={newMessage} placeholder="Type a message...">
-    <button type="submit">Send</button>
-  </form>
+  <div class="chat-input">
+    <input type="text" bind:value={newMessage} placeholder="type something here...">
+    <button on:click={sendMessage}>return</button>
+  </div>
 </div>
 
 <style>
-  .messages {
-    height: 300px;
-    overflow-y: auto;
+  .chat-window {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      background-color: #ffffff;
+      border-left: 2px solid #808080;
   }
-  .sent {
-    text-align: right;
-    color: blue;
+  .chat-header {
+      background-color: #000080;
+      color: white;
+      padding: 5px;
+      font-weight: bold;
   }
-  .received {
-    text-align: left;
-    color: green;
+  .chat-messages {
+      flex-grow: 1;
+      padding: 10px;
+      overflow-y: auto;
+  }
+  .message {
+      margin-bottom: 10px;
+  }
+  .message-sender {
+      font-weight: bold;
+  }
+  .message-sender.matheu { color: #0000ff; }
+  .message-sender.kelli { color: #ff0000; }
+  .chat-input {
+      display: flex;
+      padding: 10px;
+      background-color: #c0c0c0;
+      border-top: 2px solid #808080;
+  }
+  .chat-input input {
+      flex-grow: 1;
+      margin-right: 10px;
   }
 </style>
